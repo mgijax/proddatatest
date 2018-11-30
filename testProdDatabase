@@ -1,0 +1,21 @@
+#!/bin/sh
+set -o pipefail
+
+cd `dirname $0`
+
+if [ $# -ge 2 ]; then
+	source Configuration $1 $2
+else
+	source Configuration
+fi
+
+export DATATEST_DBSERVER DATATEST_DBNAME PYTHONPATH
+
+LOG=${DATATEST_LOGDIR}/testProdDatabase.log
+rm -f ${LOG}
+
+date | tee -a ${LOG}
+./testProdDatabase.py 2>&1 | tee -a ${LOG} || exit 1;
+
+
+echo "All tests succeeded"

@@ -1,0 +1,23 @@
+#!/bin/sh
+
+#
+# source the Configuration file
+#
+if [ ! -f Configuration ]
+then
+  echo "Missing Configuration file"
+  exit 1
+fi
+
+source Configuration
+
+#
+#Create log directory if not exist
+#
+if [ ! -d $DATATEST_LOGDIR ]
+then
+   mkdir $DATATEST_LOGDIR
+   echo "Log directory '${DATATEST_LOGDIR}' created"
+fi
+
+echo "Install complete"

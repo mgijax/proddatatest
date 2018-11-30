@@ -1,0 +1,33 @@
+#!/bin/sh
+
+if [ ! $MGICONFIG ]
+then
+   MGICONFIG=/usr/local/mgi/live/mgiconfig
+fi
+. $MGICONFIG/master.config.sh
+
+USAGE="Usage: $0 [server] [database]
+	server and database are optional; if not specified, will use values
+	from mgiconfig (MGD_DBSERVER and MGD_DBNAME)
+"
+
+### Configuration for datatest product ###
+
+DATATEST_LOGDIR=logs
+export DATATEST_LOGDIR
+
+# default values from mgiconfig
+if [ $# -ge 2 ]; then
+    DATATEST_DBSERVER=$1
+    DATATEST_DBNAME=$2 
+
+elif [ ${MGD_DBSERVER} ]; then
+    DATATEST_DBSERVER=$MGD_DBSERVER
+    DATATEST_DBNAME=$MGD_DBNAME
+
+else
+    echo "Cannot set DATATEST_DBSERVER. MGD_DBSERVER variable not set"
+    exit 1;
+fi
+
+export DATATEST_DBSERVER DATATEST_DBNAME PYTHONPATH
