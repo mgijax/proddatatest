@@ -20,6 +20,8 @@ def master_suite():
 	suites = []
 
 	suites.append(no_empty_chromosomes_test.suite())
+	suites.append(null_allele_call_test.suite())
+	suites.append(all_allele_call_test.suite())
 	master_suite = unittest.TestSuite(suites)
 
 	return master_suite

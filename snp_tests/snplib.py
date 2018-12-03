@@ -16,6 +16,47 @@ SUBSNP_LDB = 74
 SUBMITTERSNP_LDB = 75
 SUBSNP_POPULATION_LDB = 76
 
+# names of strains expected to be in the Sanger SNP data set (plus C57BL/6J)
+SANGER_STRAINS = [
+	'129P2/OlaHsd',
+	'129X1/SvJ',
+	'129S1/SvImJ',
+	'129S5/SvEvBrd',
+	'AKR/J',
+	'A/J',
+	'BALB/cJ',
+	'BTBR T<+> Itpr3<tf>/J',
+	'BUB/BnJ',
+	'C3H/HeH',
+	'C3H/HeJ',
+	'C57BL/10J',
+	'C57BL/6J',
+	'C57BL/6NJ',
+	'C57BR/cdJ',
+	'C57L/J',
+	'C58/J',
+	'CAST/EiJ',
+	'CBA/J',
+	'DBA/1J',
+	'DBA/2J',
+	'FVB/NJ',
+	'I/LnJ',
+	'KK/HlJ',
+	'LEWES/EiJ',
+	'LP/J',
+	'MOLF/EiJ',
+	'NOD/ShiLtJ',
+	'NZB/BlNJ',
+	'NZO/HlLtJ',
+	'NZW/LacJ',
+	'PWK/PhJ',
+	'RF/J',
+	'SEA/GnJ',
+	'SPRET/EiJ',
+	'ST/bJ',
+	'WSB/EiJ',
+	]
+
 ###--- classes ---###
 
 class ConsensusSnp:
@@ -338,3 +379,10 @@ def printVerbose(obj, indentCount = 0, tail = ''):
 					printVerbose(eval('obj.%s' % name), indentCount + 1, ',')
 		print '%s}%s' % (indent, tail)
 	return
+
+def strainsWithCalls(alleleCalls):
+	# for the given list of allele calls, return a Set of the strains represented in it
+	strains = set()
+	for call in alleleCalls:
+		strains.add(call.strain)
+	return strains

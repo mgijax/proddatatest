@@ -72,6 +72,16 @@ class DataTestCase(object):
 			self._recordAssertionFailure()
 			raise
 		
+	def assertNotEmpty(self, collection, msg=None):
+		"""
+		ensure that the collection is not empty, or fail
+		"""
+		try:
+			self.assertTrue(len(collection) > 0, msg)
+		except AssertionError, ae:
+			self._recordAssertionFailure()
+			raise
+		
 	def _recordAssertionFailure(self):
 		global HINTS
 		if hasattr(self, 'hints'):
