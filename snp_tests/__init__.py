@@ -5,4 +5,5 @@ __all__ = [
 	"null_allele_call_test",
 	"all_allele_call_test",
 	"function_class_translation_test",
+	"vocab_term_test",
 ]

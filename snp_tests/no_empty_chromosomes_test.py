@@ -4,12 +4,13 @@ Test that each chromosome has at least one consensus SNP
 
 import unittest
 from datatest import DataTestCase, runQuery
+import snplib
 
 # constants
 
 
 class NoEmptyChromosomesTestCase(unittest.TestCase, DataTestCase):
-	hints = [ 'Some chromosomes have no SNPs -- are data files incomplete?']
+	hints = []
 
 	def testChromosomesHaveData(self):
 		"""
@@ -25,6 +26,29 @@ class NoEmptyChromosomesTestCase(unittest.TestCase, DataTestCase):
 					and c._ConsensusSnp_key = s._ConsensusSnp_key
 				limit 1''' % chrom
 			self.assertQueryCount(1, cmd, 'Chromosome %s has no SNPs' % chrom)
+			
+	def testSpecificSnps(self):
+		"""
+		For a certain specified set of SNPs, ensure that they are on the expected chromosome.
+		"""
+		snps = [
+			('rs254397212', 'Y'),
+			('rs213274717', 'Y'),
+			]
+		
+		for (snpID, chromosome) in snps:
+			snp = snplib.getSnpByID(snpID)
+			self.assertDataTrue(snp != None, 'Unknown SNP ID: %s' % snpID)
+			
+			# ensure the SNP has at least one location
+			self.assertNotEmpty(snp.locations, 'SNP has no locations: %s' % snpID)
+			
+			found = False
+			for location in snp.locations:
+				if location.chromosome == chromosome:
+					found = True
+					
+			self.assertDataTrue(found, 'SNP is not on chromosome %s: %s' % (chromosome, snpID))
 
 def suite():
 	suite = unittest.TestSuite()

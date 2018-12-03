@@ -23,6 +23,7 @@ def master_suite():
 	suites.append(null_allele_call_test.suite())
 	suites.append(all_allele_call_test.suite())
 	suites.append(function_class_translation_test.suite())
+	suites.append(vocab_term_test.suite())
 	master_suite = unittest.TestSuite(suites)
 
 	return master_suite
