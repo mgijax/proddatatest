@@ -4,4 +4,5 @@ __all__ = [
 	"no_empty_chromosomes_test",
 	"null_allele_call_test",
 	"all_allele_call_test",
+	"function_class_translation_test",
 ]
