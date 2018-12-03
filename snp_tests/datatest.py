@@ -11,10 +11,8 @@ if 'PYTHONPATH' in os.environ:
 import pg_db
 
 ### Globals ###
-# Track test failures
-FAILURES = []
-CACHELOADS = set([])
-OTHERFIXES = set([])
+# For tests that failed, keep track of any hints for suggested fixes.
+HINTS = set([])
 
 ### initialize database settings ###
 pg_db.set_sqlUser('mgd_public')
@@ -34,11 +32,11 @@ class DataTestCase(object):
 
 	def __init__(self):
 
-		# Ensure that subclass has implemented the cacheLoads attribute
-		#	for tracking which cacheLoads the tested data is dependent on
+		# Ensure that subclass has implemented the hints attribute
+		#	for indicating what might need to be fixed if the test fails
 
-		if (not hasattr(self, 'cacheLoads')) and (not hasattr(self, 'otherFixes')):
-			errMsg = self.__class__ + " does not implement 'cacheLoads' or 'otherFixes' attribute"
+		if not hasattr(self, 'hints'):
+			errMsg = self.__class__ + " does not implement 'hints' attribute"
 			raise NotImplementedError(errMsg)
 
 
@@ -75,12 +73,9 @@ class DataTestCase(object):
 			raise
 		
 	def _recordAssertionFailure(self):
-		global CACHELOADS
-		if hasattr(self, 'cacheLoads'):
-			CACHELOADS.update(self.cacheLoads)
-		if hasattr(self, 'otherFixes'):
-			OTHERFIXES.update(self.otherFixes)
-
+		global HINTS
+		if hasattr(self, 'hints'):
+			HINTS.update(self.hints)
 
 ### methods ###
 
@@ -96,24 +91,13 @@ def reportFailures():
 	Report any test failures
 	"""
 	log('Tested %s..%s' % (os.environ['DATATEST_DBSERVER'], os.environ['DATATEST_DBNAME'] ))
-	if CACHELOADS:
+	if HINTS:
 
-		msg = """The following cache loads may need to be rerun:\n"""
+		msg = """The following hints may help identify what to fix:\n"""
 
-		cacheloads = list(CACHELOADS)
-		cacheloads.sort()
-		for cacheload in cacheloads:
-			msg += "\t" + cacheload + "\n"
+		hints = list(HINTS)
+		hints.sort()
+		for hint in hints:
+			msg += "\t" + hint + "\n"
 
 		log(msg)
-
-	if OTHERFIXES:
-
-		msg2 = """The following other fixes may be necessary:\n"""
-
-		otherfixes = list(OTHERFIXES)
-		otherfixes.sort()
-		for otherfix in otherfixes:
-			msg2 += "\t" + otherfix + "\n"
-
-		log(msg2)

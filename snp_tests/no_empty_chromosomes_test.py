@@ -9,7 +9,7 @@ from datatest import DataTestCase, runQuery
 
 
 class NoEmptyChromosomesTestCase(unittest.TestCase, DataTestCase):
-	cacheLoads = []
+	hints = [ 'Some chromosomes have no SNPs -- are data files incomplete?']
 
 	def testChromosomesHaveData(self):
 		"""

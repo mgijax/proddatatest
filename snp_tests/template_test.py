@@ -12,8 +12,7 @@ from datatest import DataTestCase
 # Is: a bundle of tests to be executed by the standard unittest module.
 class TemplateTestCase(unittest.TestCase, DataTestCase):
 	
-	cacheLoads = []		# list of strings, each the name of a cache load that needs to be run if this test fails
-	otherFixes = []		# list of strings, each a (non-cache load) fix that needs to be run if this test fails
+	hints = []		# list of strings, each a hint for what might have gone wrong if this test fails
 
 	def setUp(self):
 		# can optionally override this standard method to perform any tasks needed before executing test
