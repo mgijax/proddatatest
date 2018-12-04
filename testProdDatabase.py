@@ -20,8 +20,6 @@ def master_suite():
 	suites = []
 
 	suites.append(chromosome_test.suite())
-	suites.append(null_allele_call_test.suite())
-	suites.append(all_allele_call_test.suite())
 	suites.append(function_class_translation_test.suite())
 	suites.append(vocab_term_test.suite())
 	suites.append(ss_id_test.suite())
