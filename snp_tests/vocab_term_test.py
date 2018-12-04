@@ -17,8 +17,6 @@ foreignKeys = [
 	]
 
 class VocabTermTestCase(unittest.TestCase, DataTestCase):
-	hints = [ 'Some foreign keys refer to wrong vocabularies - error in load?']
-
 	def testVocabTermChoices(self):
 		"""
 		For each tuple, check that the table.field only refers to terms for the desired vocabulary.

@@ -7,8 +7,6 @@ import snplib
 from datatest import DataTestCase, runQuery
 
 class ConsensusAllelesTestCase(unittest.TestCase, DataTestCase):
-	hints = []
-
 	def testAlleleCounts(self):
 		"""
 		For each pair, check that the consensus SNP has the expected number of distinct alleles.
@@ -24,7 +22,7 @@ class ConsensusAllelesTestCase(unittest.TestCase, DataTestCase):
 				where _MGIType_key = 30
 					and accID = '%s'
 				limit 1''' % snpID
-			self.assertQueryCount(1, cmd, 'Unknown SNP ID : %s' % snpID)
+			self.assertQueryCount(1, cmd, 'Unknown SNP ID : %s' % snpID, 'SNP data out of date?')
 
 			cmd = '''select distinct s.allele
 				from snp_accession a, snp_consensussnp_strainallele s
@@ -46,7 +44,7 @@ class ConsensusAllelesTestCase(unittest.TestCase, DataTestCase):
 		
 		for snpID in snps:
 			snp = snplib.getSnpByID(snpID)
-			self.assertDataTrue(snp != None, 'Unknown SNP ID: %s' % snpID)
+			self.assertDataTrue(snp != None, 'Unknown SNP ID: %s' % snpID, 'SNP data out of date?')
 			
 			# ensure that there's at least one allele call for the SNP
 			self.assertNotEmpty(snp.alleleCalls, 'SNP has no allele calls: %s' % snpID)
@@ -68,7 +66,7 @@ class ConsensusAllelesTestCase(unittest.TestCase, DataTestCase):
 		
 		for snpID in snps:
 			snp = snplib.getSnpByID(snpID)
-			self.assertDataTrue(snp != None, 'Unknown SNP ID: %s' % snpID)
+			self.assertDataTrue(snp != None, 'Unknown SNP ID: %s' % snpID, 'SNP data out of date?')
 			
 			# ensure that there's at least one allele call for the SNP
 			self.assertNotEmpty(snp.alleleCalls, 'SNP has no allele calls: %s' % snpID)

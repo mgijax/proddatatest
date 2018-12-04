@@ -14,8 +14,6 @@ pairs = [
 	]
 
 class SSIDTestCase(unittest.TestCase, DataTestCase):
-	hints = [ 'Check algorithm for choosing an SS when there are multiples' ]
-
 	def testChoiceOfSS(self):
 		"""
 		For each pair, check that the consensus SNP has been associated only with the expected sub SNP.
@@ -27,14 +25,14 @@ class SSIDTestCase(unittest.TestCase, DataTestCase):
 				where _MGIType_key = 30
 					and accID = '%s'
 				limit 1''' % consensusSnpID
-			self.assertQueryCount(1, cmd, 'Unknown consensus SNP ID : %s' % consensusSnpID)
+			self.assertQueryCount(1, cmd, 'Unknown consensus SNP ID : %s' % consensusSnpID, 'SNP data out of date?')
 
 			cmd = '''select 1
 				from snp_accession
 				where _MGIType_key = 31
 					and accID = '%s'
 				limit 1''' % subSnpID
-			self.assertQueryCount(1, cmd, 'Unknown sub SNP ID : %s' % subSnpID)
+			self.assertQueryCount(1, cmd, 'Unknown sub SNP ID : %s' % subSnpID, 'SNP data out of date?')
 
 			cmd = '''select 1
 				from snp_subsnp ss, snp_accession a

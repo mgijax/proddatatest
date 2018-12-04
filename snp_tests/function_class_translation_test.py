@@ -31,8 +31,6 @@ pairs = [
 	]
 
 class FunctionClassTranslationTestCase(unittest.TestCase, DataTestCase):
-	hints = [ 'Fxn class translations missing - check translation table?']
-
 	def testFunctionClassTranslations(self):
 		"""
 		For each pair, check that the SNP has been associated with the proper translated function class.
@@ -44,14 +42,14 @@ class FunctionClassTranslationTestCase(unittest.TestCase, DataTestCase):
 				where _MGIType_key = 30
 					and accID = '%s'
 				limit 1''' % snpID
-			self.assertQueryCount(1, cmd, 'Unknown SNP ID : %s' % snpID)
+			self.assertQueryCount(1, cmd, 'Unknown SNP ID : %s' % snpID, 'SNP data out of date?')
 
 			cmd = '''select 1
 				from mgi_translation
 				where _TranslationType_key = 1014
 					and badName = '%s'
 				limit 1''' % rawFxnClass
-			self.assertQueryCount(1, cmd, 'Could not find translation record for: %s' % rawFxnClass)
+			self.assertQueryCount(1, cmd, 'Could not find translation record for: %s' % rawFxnClass, 'Missing a translation record?')
 			
 			cmd = '''select 1
 				from snp_accession a, snp_consensussnp_marker c, voc_term t, mgi_translation x

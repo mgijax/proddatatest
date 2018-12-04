@@ -30,17 +30,9 @@ class DataTestCase(object):
 	Tracks and reports failures
 	"""
 
-	def __init__(self):
+	hints = []
 
-		# Ensure that subclass has implemented the hints attribute
-		#	for indicating what might need to be fixed if the test fails
-
-		if not hasattr(self, 'hints'):
-			errMsg = self.__class__ + " does not implement 'hints' attribute"
-			raise NotImplementedError(errMsg)
-
-
-	def assertQueryCount(self, count, query, msg=None):
+	def assertQueryCount(self, count, query, msg=None, hint=None):
 		"""
 		Assert that the query returns count number of results
 		"""
@@ -50,9 +42,10 @@ class DataTestCase(object):
 			self.assertEquals(count, len(results), msg)
 		except AssertionError, ae:
 			self._recordAssertionFailure()
+			self._addHint(hint)
 			raise
 
-	def assertDataEquals(self, expected, actual, msg=None):
+	def assertDataEquals(self, expected, actual, msg=None, hint=None):
 		"""
 		Assert equals wrapper
 		"""
@@ -60,9 +53,10 @@ class DataTestCase(object):
 			self.assertEquals(expected, actual, msg)
 		except AssertionError, ae:
 			self._recordAssertionFailure()
+			self._addHint(hint)
 			raise
 
-	def assertDataTrue(self, booleanValue, msg=None):
+	def assertDataTrue(self, booleanValue, msg=None, hint=None):
 		"""
 		AssertTrue wrapper
 		"""
@@ -70,9 +64,10 @@ class DataTestCase(object):
 			self.assertTrue(booleanValue, msg)
 		except AssertionError, ae:
 			self._recordAssertionFailure()
+			self._addHint(hint)
 			raise
 		
-	def assertNotEmpty(self, collection, msg=None):
+	def assertNotEmpty(self, collection, msg=None, hint=None):
 		"""
 		ensure that the collection is not empty, or fail
 		"""
@@ -80,12 +75,16 @@ class DataTestCase(object):
 			self.assertTrue(len(collection) > 0, msg)
 		except AssertionError, ae:
 			self._recordAssertionFailure()
+			self._addHint(hint)
 			raise
 		
 	def _recordAssertionFailure(self):
 		global HINTS
-		if hasattr(self, 'hints'):
-			HINTS.update(self.hints)
+		HINTS.update(self.hints)
+
+	def _addHint(self, hint):
+		if hint and (hint not in self.hints):
+			self.hints.append(hint)
 
 ### methods ###
 

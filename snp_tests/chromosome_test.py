@@ -6,12 +6,7 @@ import unittest
 from datatest import DataTestCase, runQuery
 import snplib
 
-# constants
-
-
 class ChromosomeTestCase(unittest.TestCase, DataTestCase):
-	hints = []
-
 	def testChromosomesHaveData(self):
 		"""
 		For each chromosome, test that at least one consensus SNP exists.
@@ -25,7 +20,7 @@ class ChromosomeTestCase(unittest.TestCase, DataTestCase):
 				where c.chromosome = '%s'
 					and c._ConsensusSnp_key = s._ConsensusSnp_key
 				limit 1''' % chrom
-			self.assertQueryCount(1, cmd, 'Chromosome %s has no SNPs' % chrom)
+			self.assertQueryCount(1, cmd, 'Chromosome %s has no SNPs' % chrom, 'Missing data files?')
 			
 	def testSpecificSnps(self):
 		"""
@@ -42,7 +37,7 @@ class ChromosomeTestCase(unittest.TestCase, DataTestCase):
 		
 		for (snpID, chromosome) in snps:
 			snp = snplib.getSnpByID(snpID)
-			self.assertDataTrue(snp != None, 'Unknown SNP ID: %s' % snpID)
+			self.assertDataTrue(snp != None, 'Unknown SNP ID: %s' % snpID, 'SNP data out of date?')
 			
 			# ensure the SNP has at least one location
 			self.assertNotEmpty(snp.locations, 'SNP has no locations: %s' % snpID)
