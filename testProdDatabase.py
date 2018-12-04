@@ -25,6 +25,7 @@ def master_suite():
 	suites.append(function_class_translation_test.suite())
 	suites.append(vocab_term_test.suite())
 	suites.append(ss_id_test.suite())
+	suites.append(consensus_alleles_test.suite())
 	master_suite = unittest.TestSuite(suites)
 
 	return master_suite
