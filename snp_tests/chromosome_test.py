@@ -9,7 +9,7 @@ import snplib
 # constants
 
 
-class NoEmptyChromosomesTestCase(unittest.TestCase, DataTestCase):
+class ChromosomeTestCase(unittest.TestCase, DataTestCase):
 	hints = []
 
 	def testChromosomesHaveData(self):
@@ -56,7 +56,7 @@ class NoEmptyChromosomesTestCase(unittest.TestCase, DataTestCase):
 
 def suite():
 	suite = unittest.TestSuite()
-	suite.addTest(unittest.makeSuite(NoEmptyChromosomesTestCase))
+	suite.addTest(unittest.makeSuite(ChromosomeTestCase))
 	return suite
 
 if __name__ == '__main__':
