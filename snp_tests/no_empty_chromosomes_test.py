@@ -34,6 +34,10 @@ class NoEmptyChromosomesTestCase(unittest.TestCase, DataTestCase):
 		snps = [
 			('rs254397212', 'Y'),
 			('rs213274717', 'Y'),
+			('rs47887021', 'Y'),
+			('rs48587681', 'Y'),
+			('rs45850354', 'Y'),
+			('rs107920735', 'Y'),
 			]
 		
 		for (snpID, chromosome) in snps:

@@ -11,7 +11,10 @@ pairs = [
 	('stop-gained', 'rs584021049'),
 	('missense', 'rs218600550'),
 	('synonymous-codon', 'rs587592675'),
-	('reference', 'rs214952642'),			# may need a different SNP ID
+	('reference', 'rs214952642'),
+	('reference', 'rs584021049'),
+	('reference', 'rs218600550'),
+	('reference', 'rs587592675'),
 	('intron-variant', 'rs584021049'),
 	('intron-variant', 'rs587462797'),
 	('intron-variant', 'rs580281772'),
