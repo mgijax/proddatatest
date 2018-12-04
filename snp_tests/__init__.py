@@ -6,4 +6,5 @@ __all__ = [
 	"all_allele_call_test",
 	"function_class_translation_test",
 	"vocab_term_test",
+	"ss_id_test",
 ]
