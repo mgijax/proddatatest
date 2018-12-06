@@ -30,7 +30,6 @@ SANGER_STRAINS = [
 	'C3H/HeH',
 	'C3H/HeJ',
 	'C57BL/10J',
-	'C57BL/6J',
 	'C57BL/6NJ',
 	'C57BR/cdJ',
 	'C57L/J',
@@ -55,6 +54,7 @@ SANGER_STRAINS = [
 	'SPRET/EiJ',
 	'ST/bJ',
 	'WSB/EiJ',
+	'C57BL/6J',
 	]
 
 ###--- classes ---###
