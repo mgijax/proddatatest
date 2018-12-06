@@ -6,6 +6,16 @@ import unittest
 import snplib
 from datatest import DataTestCase, runQuery
 
+def getAllele (alleleCalls, strain):
+	# looks through the 'alleleCalls' to find and return the allele for the given 'strain',
+	# or ' ' if there is no call for that strain
+
+	if alleleCalls:
+		for call in alleleCalls:
+			if call.strain == strain:
+				return call.allele
+	return ' '
+	
 class ConsensusAllelesTestCase(unittest.TestCase, DataTestCase):
 	def testAlleleCounts(self):
 		"""
@@ -75,6 +85,57 @@ class ConsensusAllelesTestCase(unittest.TestCase, DataTestCase):
 			missingCalls = sangerStrainSet.difference(snplib.strainsWithCalls(snp.alleleCalls))
 			self.assertDataTrue(len(missingCalls) == 0,
 				'SNP is missing calls for %d alleles: %s' % (len(missingCalls), snpID))
+
+	def testAlleleCallsData(self):
+		"""
+		For each SNP in 'expectedCalls', verify that the allele calls match up with expectations.
+		"""
+
+		# expected allele calls for selected RefSNP IDs.  The string of allele calls is ordered
+		# so each position corresponds to the strain of the same position in snplib.SANGER_STRAINS.
+		# A space corresponds to no allele call for that strain.
+		expectedCalls = {
+			'rs584021049' : 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAATAAAA',
+			'rs214952642' : 'TTTT  TT  TT   ATTTTT  TATTTT T  T TT',
+			'rs580281772' : 'CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCTCCCC',
+			'rs218600550' : 'TTTTTTTTTTTTTTTCTTTTTTTTTTTTTTTTTTTTT',
+			'rs587592675' : 'AAAAAAAAAAAAAAAGAAAAAA AAAAAAAAA AAAA',
+			'rs587462797' : 'TTTTTTTTTTTTTTTTTTTTTT TTTTTTTTTGTTTT',
+			'rs3023487'   : 'AAAAAAAA AAAAAAA G A AAA AAAAAA GGAAA',
+			'rs217725902' : 'GGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGGCGGGG',
+			'rs49051912'  : 'TTTTCCTTCCTTTTTTCCCTCTTTTCTTTTTCTTTTT',
+			'rs13460870'  : 'GGGGGGGGGGGGGGGGGGGGGGGGAGGGGAGGAGGGG',
+			'rs586861309' : 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGAAAA',
+			'rs581684779' : 'AAA A A AAAAAAAAAAA AAAA A  AG  GAAGA',
+			'rs587233094' : 'TT TTT ATTAAAAATTTTTAT TATTATATTCATTA',
+			'rs234882546' : 'GGGGGGGGGGGGGGGAGGGAGGGGAGGGGGGGGGGGG',
+			'rs228894858' : 'AAAAAAATAATTTTTTAAAAAT ATATTTTAATTTTT',
+			'rs52155783'  : ' C CCCCG CGGGGGGCCC  C C   CCCGC CC G',
+			'rs582206682' : '                                    G',
+			'rs47887021'  : '          A AAA  A  AA    A A  A    A',
+			'rs48587681'  : '   G  GG  A AAA  A GAA  G A A GAGG GA',
+		}
+
+		# RS IDs from the above dictionary that should not be loaded (due to only a C57BL/6J call)
+		noLoad = [ 'rs582206682' ]
+
+		for snpID in expectedCalls:
+			snp = snplib.getSnpByID(snpID)
+			if snpID in noLoad:
+				self.assertDataTrue(snp == None, 'Should not have loaded SNP ID: %s' % snpID, 'Test data out of date?')
+				continue
+			else:
+				self.assertDataTrue(snp != None, 'Could not find SNP ID: %s' % snpID, 'SNP data out of date?')
+				
+				# check each allele for the SNP vs. its expected value
+				index = 0
+				for strain in snplib.SANGER_STRAINS:
+					expectedAllele = expectedCalls[snpID][index]
+					allele = getAllele(snp.alleleCalls, strain)
+					self.assertDataTrue(expectedAllele == allele,
+						'Mismatching allele for %s [%s - %s vs. %s]' % (snpID, strain, expectedAllele, allele),
+						'SNP data out of date?')
+					index = index + 1
 
 def suite():
 	suite = unittest.TestSuite()
