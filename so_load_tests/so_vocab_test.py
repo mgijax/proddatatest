@@ -23,7 +23,7 @@ class SOVocabTestCase(unittest.TestCase, DataTestCase):
 			from voc_vocab
 			where name = 'Sequence Ontology'
 			and isSimple = 1'''
-		self.assertQueryCount(1, cmd, 'Sequence Ontology exists in VOC_Vocab, but isSimple = 0', 'SO should be a flat vocab')
+		self.assertQueryCount(1, cmd, 'If Sequence Ontology exists in VOC_Vocab, the isSimple field should be 1', 'SO should be a flat vocab')
 		
 	def testNoDAG(self):
 		"""
