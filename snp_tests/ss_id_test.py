@@ -9,8 +9,7 @@ from datatest import DataTestCase, runQuery
 pairs = [
 	('rs234882546', 'ss644758810'),		# first two chosen by highest build ID
 	('rs228894858', 'ss644784010'),
-#	('rs250650953', 'ss443168526'),		# second two chosen by highest numerical part
-#	('rs258049303', 'ss450621290'),
+	('rs52155783', 'ss924331697'),
 	]
 
 class SSIDTestCase(unittest.TestCase, DataTestCase):
