@@ -12,6 +12,7 @@ import unittest
 
 from shared import datatest
 from snp_tests import *
+from so_load_tests import *
 
 def master_suite():
 	"""
@@ -25,6 +26,7 @@ def master_suite():
 	suites.append(vocab_term_test.suite())
 	suites.append(ss_id_test.suite())
 	suites.append(consensus_alleles_test.suite())
+	suites.append(so_vocab_test.suite())
 	master_suite = unittest.TestSuite(suites)
 
 	return master_suite
