@@ -1,5 +1,4 @@
 __all__ = [
-	"datatest",
 	"snplib",
 	"chromosome_test",
 	"function_class_translation_test",

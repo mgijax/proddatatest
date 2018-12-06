@@ -4,7 +4,7 @@ Test that the expected number of distinct alleles were loaded for certain SNPs.
 
 import unittest
 import snplib
-from datatest import DataTestCase, runQuery
+from shared.datatest import DataTestCase, runQuery
 
 def getAllele (alleleCalls, strain):
 	# looks through the 'alleleCalls' to find and return the allele for the given 'strain',

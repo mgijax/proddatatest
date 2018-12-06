@@ -10,6 +10,7 @@ Reports possible remedies (E.g. which cache loads might need to be rerun)
 import sys
 import unittest
 
+from shared import datatest
 from snp_tests import *
 
 def master_suite():

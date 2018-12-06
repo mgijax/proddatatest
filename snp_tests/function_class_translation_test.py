@@ -3,7 +3,7 @@ Test that translations from raw function classes to the MGI vocabulary are valid
 """
 
 import unittest
-from datatest import DataTestCase, runQuery
+from shared.datatest import DataTestCase, runQuery
 
 # constants
 pairs = [

@@ -4,7 +4,7 @@ Test foreign key relationships to ensure that terms are chosen from the expected
 """
 
 import unittest
-from datatest import DataTestCase, runQuery
+from shared.datatest import DataTestCase, runQuery
 
 # (source table, FK in source table, name of expected vocabulary)
 foreignKeys = [

@@ -10,7 +10,7 @@ sys.path.insert(0, '/usr/local/mgi/live/lib/python')
 #sys.path.insert(0, os.path.join(os.getcwd(), 'snp_tests'))
 sys.path.insert(0, os.getcwd())
 import pg_db
-from snp_tests import CGI
+from shared import CGI
 from snp_tests import snplib
 import Profiler
 profiler = Profiler.Profiler()

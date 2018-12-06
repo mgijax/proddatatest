@@ -3,7 +3,7 @@ Example for building new tests
 """
 
 import unittest
-from datatest import DataTestCase
+from shared.datatest import DataTestCase
 
 ###--- Globals ---###
 

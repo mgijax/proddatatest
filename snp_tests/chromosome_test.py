@@ -3,7 +3,7 @@ Test that each chromosome has at least one consensus SNP
 """
 
 import unittest
-from datatest import DataTestCase, runQuery
+from shared.datatest import DataTestCase, runQuery
 import snplib
 
 class ChromosomeTestCase(unittest.TestCase, DataTestCase):

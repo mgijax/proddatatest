@@ -3,7 +3,7 @@ Test that the correct SS ID is chosen for (Sanger) consensus SNPs with multiple 
 """
 
 import unittest
-from datatest import DataTestCase, runQuery
+from shared.datatest import DataTestCase, runQuery
 
 # constants
 pairs = [
