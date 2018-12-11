@@ -68,7 +68,7 @@ class ConsensusAllelesTestCase(unittest.TestCase, DataTestCase):
 		For each RefSNP, check that all Sanger + B6 strains have an allele call.
 		"""
 		# new SNPs to come in with Sanger data:
-		snps = [ 'rs587462797', 'rs584021049', 'rs214952642' ]
+		snps = [ 'rs584021049', 'rs586861309', 'rs234882546' ]
 
 		sangerStrainSet = set()
 		for strain in snplib.SANGER_STRAINS:
