@@ -114,6 +114,9 @@ class ConsensusAllelesTestCase(unittest.TestCase, DataTestCase):
 			'rs582206682' : '                                    G',
 			'rs47887021'  : '          A AAA  A  AA    A A  A    A',
 			'rs48587681'  : '   G  GG  A AAA  A GAA  G A A GAGG GA',
+			'rs586195285' : 'GGGG GGG  G GGG  G GGGG  GGGG GG GGGG',	# case 18
+			'rs247969879' : '                                G   A',    # case 19
+
 		}
 
 		# RS IDs from the above dictionary that should not be loaded (due to only a C57BL/6J call)
