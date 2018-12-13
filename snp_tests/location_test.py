@@ -44,7 +44,7 @@ class LocationTestCase(unittest.TestCase, DataTestCase):
 			('rs52155783', '19'),
 			('rs586195285', '18'),
 			('rs247969879', '18'),
-			('rs45734785', '18'),
+			('rs45734785', '19'),
 			]
 		
 		for (snpID, chromosome) in snps:
@@ -68,7 +68,7 @@ class LocationTestCase(unittest.TestCase, DataTestCase):
 		snps = [
 			('rs586195285', '18', 3000024),
 			('rs247969879', '18', 3000323),
-			('rs45734785', '18', 53244501),
+			('rs45734785', '19', 53244501),
 			]
 
 		for (snpID, chrom, coord) in snps:
