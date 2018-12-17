@@ -7,19 +7,15 @@ from shared.datatest import DataTestCase, runQuery
 
 # constants
 pairs = [
-	('stop-lost', 'rs214952642'),
 	('stop-gained', 'rs584021049'),
 	('missense', 'rs218600550'),
 	('synonymous-codon', 'rs587592675'),
-	('reference', 'rs214952642'),
 	('reference', 'rs584021049'),
 	('reference', 'rs218600550'),
 	('reference', 'rs587592675'),
 	('intron-variant', 'rs584021049'),
 	('intron-variant', 'rs587462797'),
 	('intron-variant', 'rs580281772'),
-	('upstream-variant-2KB', 'rs3023487'),
-	('upstream-variant-2KB', 'rs214952642'),
 	('upstream-variant-2KB', 'rs49051912'),
 	('downstream-variant-500B', 'rs217725902'),
 	('utr-variant-5-prime', 'rs49051912'),
