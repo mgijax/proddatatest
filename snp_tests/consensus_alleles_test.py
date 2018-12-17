@@ -111,8 +111,6 @@ class ConsensusAllelesTestCase(unittest.TestCase, DataTestCase):
 			'rs228894858' : 'AAAAAAATAATTTTTTAAAAAT ATATTTTAATTTTT',
 			'rs52155783'  : ' C CCCCG CGGGGGGCCC  C C   CCCGC CC G',
 			'rs582206682' : '                                    G',
-			'rs47887021'  : '          A AAA  A  AA    A A  A    A',
-			'rs48587681'  : '   G  GG  A AAA  A GAA  G A A GAGG GA',
 			'rs586195285' : 'GGGG GGG  G GGG  G GGGG  GGGG GG GGGG',	# case 18
 			'rs247969879' : '                                G   A',    # case 19
 

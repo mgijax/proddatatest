@@ -19,7 +19,6 @@ SUBSNP_POPULATION_LDB = 76
 # names of strains expected to be in the Sanger SNP data set (plus C57BL/6J)
 SANGER_STRAINS = [
 	'129P2/OlaHsd',
-	'129X1/SvJ',
 	'129S1/SvImJ',
 	'129S5/SvEvBrd',
 	'AKR/J',
@@ -54,6 +53,7 @@ SANGER_STRAINS = [
 	'SPRET/EiJ',
 	'ST/bJ',
 	'WSB/EiJ',
+	'ZALENDE/EiJ',
 	'C57BL/6J',
 	]
 
